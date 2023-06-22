@@ -2,6 +2,7 @@ package com.example.checkboxes;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
@@ -18,10 +19,12 @@ public class HelloController implements Initializable {
     private final ChoiceBox<Double> volumeChoiceBox = new ChoiceBox<>();
     private final Double[] volChoices = {1.0, 2.0, 3.0};
     private CheckBox checkBox = new CheckBox("Click here");
+    @FXML
     private VBox vBox;
     private Text txt1 = new Text();
     private Text txt2 = new Text();
     private Text txt3 = new Text();
+    @FXML
     private HBox hBox;
     private String oldText;
 
