@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -16,24 +17,30 @@ public class HelloController implements Initializable {
     private final SimpleBooleanProperty simpleBooleanProperty = new SimpleBooleanProperty();
     private final ChoiceBox<Double> volumeChoiceBox = new ChoiceBox<>();
     private final Double[] volChoices = {1.0, 2.0, 3.0};
-    public CheckBox checkBox = new CheckBox("Click here");
-    public VBox vBox;
-    public Text txt1 = new Text();
-    public Text txt2 = new Text();
-    public Text txt3 = new Text();
+    private CheckBox checkBox = new CheckBox("Click here");
+    private VBox vBox;
+    private Text txt1 = new Text();
+    private Text txt2 = new Text();
+    private Text txt3 = new Text();
+    private HBox hBox;
     private String oldText;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txt1.setOnMouseEntered(mouseEvent -> {
             oldText = txt1.getText();
             txt1.setText("Feck off!!!");
+
         });
         txt1.setOnMouseExited(mouseEvent -> txt1.setText(oldText));
-
         txt1.setText("Off");
+
         volumeChoiceBox.getItems().addAll(volChoices);
+        volumeChoiceBox.setValue(1.0);
         volumeChoiceBox.setOnAction(this::getVolValue);
+
         checkBox.setSelected(false);
         checkBox.setPadding(new Insets(10));
         checkBox.setOnAction(actionEvent -> {
@@ -41,7 +48,11 @@ public class HelloController implements Initializable {
             setThisAsOn();
         });
 
-        vBox.getChildren().addAll(checkBox, txt1, txt2, volumeChoiceBox, txt3);
+        hBox.setPadding(new Insets(20));
+        hBox.getChildren().addAll(volumeChoiceBox,txt3);//populate hBox
+
+        vBox.getChildren().addAll(checkBox, txt1, txt2);//add HBox to vBov
+
 
         //add a listener
         simpleBooleanProperty.addListener((observableValue, aBoolean, t1) -> {
